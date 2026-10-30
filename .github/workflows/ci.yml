@@ -99,6 +99,11 @@ jobs:
           ruby-version: '3.4'
       - name: Install rubocop
         run: gem install --no-document rubocop -v 1.89.0
+      # The rust plugin's scenario and smoke test run the real `cargo clippy`.
+      # The runners ship a stable toolchain; clippy is a rustup component and
+      # not guaranteed to be on it, so it is added explicitly.
+      - name: Install clippy
+        run: rustup component add clippy
       - name: Test
         run: uv run pytest
       # Dogfooding: habit-hooks gates its own source. Without this the tool can

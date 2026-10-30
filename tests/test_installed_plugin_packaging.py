@@ -9,11 +9,13 @@ from installed_projects import (
     PHP_SOURCE,
     PYTHON_SOURCE,
     RUBY_SOURCE,
+    RUST_SOURCE,
     TYPESCRIPT_SOURCE,
     java_project,
     php_project,
     python_project,
     ruby_project,
+    rust_project,
     typescript_project,
 )
 
@@ -99,6 +101,23 @@ def test_installed_ruby_plugin_runs_its_rubocop_pipeline(
         issue = finding["issues"][0]
         assert Path(issue["key"]).name == RUBY_SOURCE
         assert issue["details"]["source"].startswith("rubocop:")
+
+
+def test_installed_rust_plugin_runs_its_clippy_pipeline(
+    installed_habit_sensors: Path, tmp_path: Path
+) -> None:
+    require_tool("cargo")
+    project = rust_project(tmp_path)
+
+    findings = run_and_collect_findings(installed_habit_sensors, project)
+
+    by_smell = {finding["smell"]: finding for finding in findings}
+    assert by_smell.keys() == {"too-many-parameters", "unused-variable"}
+    for finding in findings:
+        assert finding["language"] == "rust"
+        issue = finding["issues"][0]
+        assert issue["key"] == RUST_SOURCE
+        assert issue["details"]["source"].startswith("clippy:")
 
 
 def test_installed_python_plugin_runs_its_ruff_pipeline(

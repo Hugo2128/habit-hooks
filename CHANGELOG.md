@@ -2,6 +2,23 @@
 
 ## Unreleased
 
+### Added
+
+- **The `rust` plugin.** `pip install "habit-hooks[rust]"`, add `"rust"` to
+  `plugins`, and a `clippy` sensor translates rustc and clippy lints into the
+  smell vocabulary every other plugin speaks: `too-many-parameters`,
+  `oversized-function`, `high-complexity`, `deep-nesting`, `unused-variable`,
+  `unused-import`, `unused-class-member`, `swallowed-exception` and
+  `parse-error`. Four of those lints are opt-in in clippy and the sensor
+  switches them on; their thresholds come from your `clippy.toml` when you
+  have one, else from the plugin's.
+
+  Clippy lints a crate, not a file list, so the sensor runs it once per
+  workspace a scoped file belongs to and keeps the diagnostics that land on
+  scoped files. A crate that does not compile is a `parse-error` finding, not a
+  failed run. A lint this plugin has no smell for is forwarded under its own
+  name rather than dropped. `habit-hooks init` recognises a `Cargo.toml`.
+
 ### Fixed
 
 - **On Python 3.13 a plugin's `search_paths` could name a directory outside

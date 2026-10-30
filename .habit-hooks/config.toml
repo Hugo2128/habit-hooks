@@ -18,6 +18,8 @@ files = [
   "plugins/php/tests/**/*.py",
   "plugins/ruby/src/**/*.py",
   "plugins/ruby/tests/**/*.py",
+  "plugins/rust/src/**/*.py",
+  "plugins/rust/tests/**/*.py",
   "plugins/typescript/src/**/*.py",
   "plugins/typescript/tests/**/*.py",
 ]

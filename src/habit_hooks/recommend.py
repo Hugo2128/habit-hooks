@@ -19,6 +19,7 @@ LANGUAGE_SIGNALS = (
     LanguageSignal("php", ("composer.json",), (".php",)),
     LanguageSignal("java", ("pom.xml", "build.gradle", "build.gradle.kts"), (".java",)),
     LanguageSignal("ruby", ("Gemfile", ".rubocop.yml"), (".rb",)),
+    LanguageSignal("rust", ("Cargo.toml",), (".rs",)),
 )
 
 

@@ -16,6 +16,7 @@ PACKAGE_DIRS = [
     REPO / "plugins/php",
     REPO / "plugins/java",
     REPO / "plugins/ruby",
+    REPO / "plugins/rust",
 ]
 
 published = pytest.mark.parametrize(

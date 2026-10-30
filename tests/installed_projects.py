@@ -16,6 +16,7 @@ PYTHON_SOURCE = "billing.py"
 PHP_SOURCE = "billing.php"
 JAVA_SOURCE = "Billing.java"
 RUBY_SOURCE = "billing.rb"
+RUST_SOURCE = "src/lib.rs"
 
 
 def _project(tmp_path: Path, name: str, config: str) -> Path:
@@ -89,6 +90,23 @@ def ruby_project(tmp_path: Path) -> Path:
     )
     (project / RUBY_SOURCE).write_text(
         "def charge(a, b, c, d, e, f, g)\n  unused = 1\n  a + b + c\nend\n",
+        encoding="utf-8",
+    )
+    return project
+
+
+def rust_project(tmp_path: Path) -> Path:
+    project = _project(tmp_path, "rust-proj", 'plugins = ["rust"]\n')
+    (project / "Cargo.toml").write_text(
+        '[package]\nname = "billing"\nversion = "0.1.0"\nedition = "2021"\n',
+        encoding="utf-8",
+    )
+    (project / "src").mkdir()
+    (project / RUST_SOURCE).write_text(
+        "pub fn charge(a: u32, b: u32, c: u32, d: u32, e: u32, f: u32) -> u32 {\n"
+        "    let unused = 1;\n"
+        "    a + b + c + d + e + f\n"
+        "}\n",
         encoding="utf-8",
     )
     return project
