@@ -25,6 +25,7 @@ plugin. Language plugins are opt-in extras:
   habit-hooks[php]
   habit-hooks[java]
   habit-hooks[ruby]
+  habit-hooks[rust]
   habit-hooks[all]
 
 Project: https://github.com/habit-hooks/habit-hooks

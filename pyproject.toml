@@ -57,12 +57,14 @@ typescript = ["habit-hooks-typescript>=1.5.dev0,<2"]
 php = ["habit-hooks-php>=1.5.dev0,<2"]
 java = ["habit-hooks-java>=1.5.dev0,<2"]
 ruby = ["habit-hooks-ruby>=1.5.dev0,<2"]
+rust = ["habit-hooks-rust>=1.5.dev0,<2"]
 all = [
     "habit-hooks-python>=1.5.dev0,<2",
     "habit-hooks-typescript>=1.5.dev0,<2",
     "habit-hooks-php>=1.5.dev0,<2",
     "habit-hooks-java>=1.5.dev0,<2",
     "habit-hooks-ruby>=1.5.dev0,<2",
+    "habit-hooks-rust>=1.5.dev0,<2",
 ]
 
 [project.urls]
@@ -94,6 +96,7 @@ habit-hooks-typescript = { workspace = true }
 habit-hooks-php = { workspace = true }
 habit-hooks-java = { workspace = true }
 habit-hooks-ruby = { workspace = true }
+habit-hooks-rust = { workspace = true }
 
 [dependency-groups]
 dev = [
@@ -107,6 +110,7 @@ dev = [
     "habit-hooks-php",
     "habit-hooks-java",
     "habit-hooks-ruby",
+    "habit-hooks-rust",
 ]
 
 [tool.pytest.ini_options]
@@ -130,6 +134,7 @@ DEP002 = [
     "habit-hooks-php",
     "habit-hooks-java",
     "habit-hooks-ruby",
+    "habit-hooks-rust",
 ]
 
 [tool.ruff]

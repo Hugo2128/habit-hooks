@@ -70,7 +70,7 @@ answers "why is this run not reporting anything?".
 Setup is four steps. A run that reports nothing is almost always a skipped one:
 
 1. **Install habit-hooks** — you get the core and the generic, language-agnostic plugin.
-2. **Install the plugin for your language** — python, typescript, php, java and ruby ship as separate packages.
+2. **Install the plugin for your language** — python, typescript, php, java, ruby and rust ship as separate packages.
 3. **Enable the plugins** by naming them in `.habit-hooks/config.toml`. Installing one does not switch it on.
 4. **Install the detectors** the plugins you enabled use — `jscpd`, `ruff`, `eslint` and friends.
 
@@ -95,7 +95,7 @@ You get **core plus the generic plugin**, and four commands on your `PATH`: `hab
 `habit-mapper`, `habit-snooze`. Homebrew is the exception — it installs every plugin we ship, so skip to step 3.
 
 > ⚠️ **On its own this checks nothing about your language.** The generic plugin measures file length and
-> duplication. Python, TypeScript, PHP, Java and Ruby each need their own plugin — installed (step 2) *and*
+> duplication. Python, TypeScript, PHP, Java, Ruby and Rust each need their own plugin — installed (step 2) *and*
 > enabled (step 3).
 
 ### 2. Install the plugin for your language
@@ -147,6 +147,7 @@ Detectors are **not** bundled: a plugin spawns the real tool, or reads it as a l
 | **php** | `php` — [phpmd](https://phpmd.org/) ships bundled as a phar | nothing beyond a PHP runtime |
 | **java** | [`pmd`](https://pmd.github.io/) | `brew install pmd` |
 | **ruby** | [`rubocop`](https://rubocop.org/) | `gem install rubocop` (or `bundle binstubs rubocop`) |
+| **rust** | [`cargo clippy`](https://doc.rust-lang.org/clippy/) | `rustup component add clippy` (cargo from [rustup](https://rustup.rs/)) |
 
 `ts-morph` is read as a library rather than spawned, so it belongs in your `devDependencies` — being on `PATH`
 does nothing for it.
@@ -338,6 +339,7 @@ The plugins we ship:
 | `php` | `php` | `phpmd` | phpmd |
 | `java` | `java` | `pmd` | pmd |
 | `ruby` | `ruby` | `rubocop` | rubocop |
+| `rust` | `rust` | `clippy` | cargo clippy |
 
 A project turns plugins on by listing them in `.habit-hooks/config.toml`. **That list is ordered, and the
 order is a priority:**

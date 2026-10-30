@@ -60,6 +60,15 @@ def test_a_java_project_is_recommended_java(tmp_path: Path) -> None:
     assert recommendations(tmp_path, ["src/App.java"], PluginStatus(set(), _on_hand())) != []
 
 
+def test_a_rust_project_is_recommended_rust(tmp_path: Path) -> None:
+    (tmp_path / "Cargo.toml").write_text('[package]\nname = "acme"\n', encoding="utf-8")
+    assert recommendations(tmp_path, [], PluginStatus(set(), _on_hand())) == [
+        "habit-sensors: detected rust; "
+        "consider `pip install habit-hooks-rust`, "
+        'then add "rust" to `plugins` in .habit-hooks/config.toml'
+    ]
+
+
 def test_a_ruby_project_is_recommended_ruby(tmp_path: Path) -> None:
     (tmp_path / "Gemfile").write_text("source 'https://rubygems.org'\n", encoding="utf-8")
     assert recommendations(tmp_path, [], PluginStatus(set(), _on_hand())) == [
