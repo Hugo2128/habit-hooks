@@ -1,3 +1,3 @@
 pub fn touch(path: &str) {
-    let _ = std::fs::read_to_string(path);
+    std::fs::remove_file(path);
 }

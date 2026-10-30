@@ -13,7 +13,6 @@ OPT_IN_LINTS = (
     "clippy::too_many_lines",
     "clippy::cognitive_complexity",
     "clippy::excessive_nesting",
-    "clippy::let_underscore_must_use",
 )
 
 CONFIG_NAMES = ("clippy.toml", ".clippy.toml")

@@ -5,8 +5,11 @@
 #
 # clippy's own defaults are 7 arguments, 100 lines and complexity 25, and
 # nesting is off (threshold 0). Those were chosen so stock clippy stays quiet
-# on most crates; coaching wants to speak earlier.
+# on most crates; coaching wants to speak earlier. Nesting counts every block
+# — `impl`, `fn` and a `match` arm are already three — so 6 is the depth at
+# which a loop-in-branch-in-arm has one level too many, measured on two real
+# workspaces where 4 flagged every other function.
 too-many-arguments-threshold = 5
 too-many-lines-threshold = 50
 cognitive-complexity-threshold = 10
-excessive-nesting-threshold = 4
+excessive-nesting-threshold = 6

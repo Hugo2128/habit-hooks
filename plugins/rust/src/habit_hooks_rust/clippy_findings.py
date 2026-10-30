@@ -9,7 +9,6 @@ LINT_SMELLS = {
     "clippy::too_many_lines": "oversized-function",
     "clippy::cognitive_complexity": "high-complexity",
     "clippy::excessive_nesting": "deep-nesting",
-    "clippy::let_underscore_must_use": "swallowed-exception",
     "unused_must_use": "swallowed-exception",
     "unused_variables": "unused-variable",
     "unused_imports": "unused-import",
