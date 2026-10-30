@@ -1,0 +1,12 @@
+# Thresholds for a project that ships no clippy.toml of its own. A project's
+# own clippy.toml (or .clippy.toml) found by clippy's upward walk wins and this
+# file is never read — the sensor only points CLIPPY_CONF_DIR here when the
+# walk would find nothing.
+#
+# clippy's own defaults are 7 arguments, 100 lines and complexity 25, and
+# nesting is off (threshold 0). Those were chosen so stock clippy stays quiet
+# on most crates; coaching wants to speak earlier.
+too-many-arguments-threshold = 5
+too-many-lines-threshold = 50
+cognitive-complexity-threshold = 10
+excessive-nesting-threshold = 4

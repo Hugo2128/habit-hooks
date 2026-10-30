@@ -1,0 +1,155 @@
+[
+  {
+    "smell": "clippy::get_first",
+    "language": "rust",
+    "details": {},
+    "issues": [
+      {
+        "key": "src/report.rs",
+        "details": {
+          "file": "src/report.rs",
+          "line": 3,
+          "column": 33,
+          "message": "accessing first element with `items.get(0)`",
+          "source": "clippy:clippy::get_first"
+        }
+      }
+    ]
+  },
+  {
+    "smell": "deep-nesting",
+    "language": "rust",
+    "details": {},
+    "issues": [
+      {
+        "key": "src/nested.rs",
+        "details": {
+          "file": "src/nested.rs",
+          "line": 5,
+          "column": 26,
+          "message": "this block is too nested",
+          "source": "clippy:clippy::excessive_nesting"
+        }
+      }
+    ]
+  },
+  {
+    "smell": "high-complexity",
+    "language": "rust",
+    "details": {},
+    "issues": [
+      {
+        "key": "src/complex.rs",
+        "details": {
+          "file": "src/complex.rs",
+          "line": 1,
+          "column": 8,
+          "message": "the function has a cognitive complexity of (12/10)",
+          "source": "clippy:clippy::cognitive_complexity"
+        }
+      }
+    ]
+  },
+  {
+    "smell": "oversized-function",
+    "language": "rust",
+    "details": {},
+    "issues": [
+      {
+        "key": "src/report.rs",
+        "details": {
+          "file": "src/report.rs",
+          "line": 1,
+          "column": 1,
+          "message": "this function has too many lines (57/50)",
+          "source": "clippy:clippy::too_many_lines"
+        }
+      }
+    ]
+  },
+  {
+    "smell": "swallowed-exception",
+    "language": "rust",
+    "details": {},
+    "issues": [
+      {
+        "key": "src/swallow.rs",
+        "details": {
+          "file": "src/swallow.rs",
+          "line": 2,
+          "column": 5,
+          "message": "non-binding `let` on an expression with `#[must_use]` type",
+          "source": "clippy:clippy::let_underscore_must_use"
+        }
+      }
+    ]
+  },
+  {
+    "smell": "too-many-parameters",
+    "language": "rust",
+    "details": {},
+    "issues": [
+      {
+        "key": "src/billing.rs",
+        "details": {
+          "file": "src/billing.rs",
+          "line": 1,
+          "column": 1,
+          "message": "this function has too many arguments (6/5)",
+          "source": "clippy:clippy::too_many_arguments"
+        }
+      }
+    ]
+  },
+  {
+    "smell": "unused-class-member",
+    "language": "rust",
+    "details": {},
+    "issues": [
+      {
+        "key": "src/unused.rs",
+        "details": {
+          "file": "src/unused.rs",
+          "line": 3,
+          "column": 4,
+          "message": "function `never_called` is never used",
+          "source": "clippy:dead_code"
+        }
+      }
+    ]
+  },
+  {
+    "smell": "unused-import",
+    "language": "rust",
+    "details": {},
+    "issues": [
+      {
+        "key": "src/unused.rs",
+        "details": {
+          "file": "src/unused.rs",
+          "line": 1,
+          "column": 5,
+          "message": "unused import: `std::collections::HashMap`",
+          "source": "clippy:unused_imports"
+        }
+      }
+    ]
+  },
+  {
+    "smell": "unused-variable",
+    "language": "rust",
+    "details": {},
+    "issues": [
+      {
+        "key": "src/unused.rs",
+        "details": {
+          "file": "src/unused.rs",
+          "line": 6,
+          "column": 9,
+          "message": "unused variable: `total`",
+          "source": "clippy:unused_variables"
+        }
+      }
+    ]
+  }
+]

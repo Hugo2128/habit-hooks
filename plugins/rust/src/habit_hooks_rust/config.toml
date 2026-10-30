@@ -1,0 +1,25 @@
+# Rust plugin defaults.
+language = "rust"
+# A project naming no `files` of its own scans what its plugins declare, so this
+# is the first run for anyone `habit-hooks init` set up. `target/` is where
+# cargo puts build output, including the sources a build script generates;
+# `vendor/` is where `cargo vendor` puts dependency sources. Neither is Rust the
+# project wrote. The exclusions name `*.rs` rather than the whole directory
+# because a plugin's exclusions bind the union of every active plugin's globs
+# (docs/config.md).
+files = ["**/*.rs", "!**/target/**/*.rs", "!**/vendor/**/*.rs"]
+# A program, not data: clippy lints a crate, never a list of files, and prints
+# one JSON object per line rather than one document. The sensor finds the
+# workspace each scoped file belongs to, runs clippy once per workspace, and
+# keeps only the diagnostics that land on a scoped file. `${args}` reaches
+# cargo as extra arguments (`--features`, `--no-default-features`, …).
+sensors = [
+  { name = "clippy", tool = "${python}", args = ["${dir}/clippy_sensor.py", "${detector:cargo}", "${args}", "--", "${files}"] },
+]
+transformers = []
+
+# The sensor spawns `cargo clippy`; clippy itself is a rustup component, and a
+# cargo without it is reported by the sensor with the command that adds it.
+detectors = [
+  { name = "cargo", kind = "command", install = "curl https://sh.rustup.rs -sSf | sh && rustup component add clippy" },
+]
