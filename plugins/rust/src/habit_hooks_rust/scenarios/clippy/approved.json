@@ -25,8 +25,8 @@
         "key": "src/nested.rs",
         "details": {
           "file": "src/nested.rs",
-          "line": 5,
-          "column": 26,
+          "line": 9,
+          "column": 34,
           "message": "this block is too nested",
           "source": "clippy:clippy::excessive_nesting"
         }
@@ -78,8 +78,8 @@
           "file": "src/swallow.rs",
           "line": 2,
           "column": 5,
-          "message": "non-binding `let` on an expression with `#[must_use]` type",
-          "source": "clippy:clippy::let_underscore_must_use"
+          "message": "unused `std::result::Result` that must be used",
+          "source": "clippy:unused_must_use"
         }
       }
     ]

@@ -37,3 +37,7 @@ Clippy behaviour is gated by `scenarios/clippy/` — the approved-output scenari
 ### clippy's `cognitive_complexity` is McCabe with early returns forgiven
 
 The lint is in clippy's nursery group and its score is not Sonar's cognitive complexity. Reading `clippy_lints/src/cognitive_complexity.rs`: the score starts at 1, adds 1 per `if` and per `match` with more than one arm (plus 1 per guarded arm), and then subtracts the early `return`s — all of them for a function returning `Result`, half otherwise. Loops, `&&`/`||` and nesting depth add nothing; closures are not walked. So it is roughly cyclomatic complexity that rewards guard clauses, and the shipped threshold of 10 matches the python plugin's `C901` limit rather than clippy's default of 25, which almost nothing reaches. Nesting depth is `excessive_nesting`'s job. A sensor that measures complexity the way Sonar does needs its own parser; that is the tree-sitter idea, not a clippy flag.
+
+### `let _ = fallible()` is not a swallowed exception
+
+The first cut switched on `clippy::let_underscore_must_use` and mapped it to `swallowed-exception`. On two real workspaces every hit was `let _ = write!(buf, …)` into a `String` — a write that cannot fail, discarded in the way Rust's own docs recommend. `let _ =` is the explicit decision the guide asks for, made visible at the call site, so the lint coached people to undo the fix. Only `unused_must_use` maps to the smell now: a `Result` that falls off the end of a statement with nothing said about it is the hidden swallow; `let _` is the stated one.

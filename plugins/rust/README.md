@@ -6,7 +6,7 @@
 
 The plugin enables `habit-sensors` over a Rust project. `cargo clippy` runs over every workspace a scoped file belongs to, and each diagnostic landing on a scoped file is rewritten into a structural code smell from the [canonical vocabulary](https://github.com/habit-hooks/habit-hooks/blob/main/docs/smell-vocabulary.md): `too-many-parameters`, `oversized-function`, `high-complexity`, `deep-nesting`, `unused-variable`, `unused-import`, `unused-class-member`, `swallowed-exception` and `parse-error`. A lint with no mapping passes through under its own name rather than disappearing, and a cargo that cannot build fails the run rather than reporting clean.
 
-Four of those lints are opt-in in clippy (`too_many_lines`, `cognitive_complexity`, `excessive_nesting`, `let_underscore_must_use`), so the sensor switches them on. Their thresholds come from your project's own `clippy.toml` when it has one; otherwise from the plugin's, which speaks earlier than stock clippy (5 arguments, 50 lines, cognitive complexity 10, nesting 4).
+Three of those lints are opt-in in clippy (`too_many_lines`, `cognitive_complexity`, `excessive_nesting`), so the sensor switches them on. Their thresholds come from your project's own `clippy.toml` when it has one; otherwise from the plugin's, which speaks earlier than stock clippy (5 arguments, 50 lines, cognitive complexity 10, nesting 6).
 
 ## Requirements
 

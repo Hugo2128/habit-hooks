@@ -9,7 +9,7 @@
   smell vocabulary every other plugin speaks: `too-many-parameters`,
   `oversized-function`, `high-complexity`, `deep-nesting`, `unused-variable`,
   `unused-import`, `unused-class-member`, `swallowed-exception` and
-  `parse-error`. Four of those lints are opt-in in clippy and the sensor
+  `parse-error`. Three of those lints are opt-in in clippy and the sensor
   switches them on; their thresholds come from your `clippy.toml` when you
   have one, else from the plugin's.
 
