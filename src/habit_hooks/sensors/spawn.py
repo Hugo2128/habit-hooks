@@ -58,6 +58,7 @@ class Spawner:
         return {
             **os.environ,
             "PATH": tool_search_path(self.project_dir),
+            "LANGUAGE": "en",
             "PYTHONIOENCODING": "utf-8",
             "PYTHONSAFEPATH": "",
         }

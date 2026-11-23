@@ -21,6 +21,13 @@
 
 ### Fixed
 
+- **On a machine set to another language, a missing tool went unnamed.**
+  A sensor whose command is not installed is reported as needing that
+  command, but the check read bash's English `command not found`; under
+  `LANG=de_DE.UTF-8` bash says `Kommando nicht gefunden` and the run printed a
+  bare failure instead. Sensors now run with `LANGUAGE=en`, which switches
+  only the language of messages, not the encoding.
+
 - **With two language plugins, each one's sensors read the other's files.**
   A project that names no `files` of its own scans every plugin's, and every
   sensor was handed all of them: with `python` and `rust` active, ruff parsed
