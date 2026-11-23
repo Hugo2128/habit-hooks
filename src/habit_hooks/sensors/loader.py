@@ -8,6 +8,7 @@ from ..config import Config
 from ..config_schema import read_toml
 from ..resolve import Resolver
 from . import inline_spec
+from .chunking import spells_files
 from .model import Part, Plugin
 from .named_tools import DeclaredTools, files_for
 
@@ -23,7 +24,7 @@ class PluginLoader:
         path = self.resolver.in_plugin(name, "config.toml")
         spec = read_toml(path) if path else {}
         sensors = [
-            self._sensor(name, entry)
+            _narrowed_to_its_language(self._sensor(name, entry), spec)
             for entry in inline_spec.unique_sensors(name, spec.get("sensors", []))
             if not self._disabled(
                 entry if isinstance(entry, str) else inline_spec.name_of(entry)
@@ -81,6 +82,13 @@ class PluginLoader:
     def _disabled(self, sensor: str) -> bool:
         override = self.config.sensors.get(sensor)
         return bool(override and override.disabled)
+
+
+def _narrowed_to_its_language(sensor: Part, spec: dict) -> Part:
+    language_files = spec.get("files") if isinstance(spec.get("language"), str) else None
+    if sensor.files is not None or not language_files or not spells_files(sensor):
+        return sensor
+    return replace(sensor, files=list(language_files))
 
 
 def _recipe(kind: str, name: str, spec: dict) -> tuple[str | None, list[str] | None]:

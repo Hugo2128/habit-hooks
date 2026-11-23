@@ -21,6 +21,16 @@
 
 ### Fixed
 
+- **With two language plugins, each one's sensors read the other's files.**
+  A project that names no `files` of its own scans every plugin's, and every
+  sensor was handed all of them: with `python` and `rust` active, ruff parsed
+  each `.rs` file as Python and reported thousands of `parse-error` findings;
+  `python` with `typescript` did the same to `.ts`. A sensor of a plugin that
+  declares a `language` now reads only the files that plugin declares, whatever
+  the project's own `files` say. A plugin with no language, like `generic`,
+  still sees the whole scope, and a sensor that names its own `files` keeps
+  them.
+
 - **On Python 3.13 a plugin's `search_paths` could name a directory outside
   your project.** A detector names the directories under the project its tool
   is looked for in, and an entry that climbs out of it is refused — except a
